@@ -1,26 +1,187 @@
 @import "tailwindcss";
 
+/* 다크 모드 (기본값) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-primary: #0a0a0f;
+  --bg-card: #1a1a2e;
+  --bg-card-hover: #252545;
+  --gradient-purple: #7b2ff7;
+  --gradient-cyan: #00f5d4;
+  --text-primary: #e4e4e7;
+  --text-secondary: #a1a1aa;
+  --accent-pink: #f72585;
+  --border-color: rgba(123, 47, 247, 0.2);
+  color-scheme: dark;
+}
+
+/* 라이트 모드 — <html data-theme="light"> 일 때 변수만 바꿔서 전체 색이 함께 바뀜 */
+:root[data-theme="light"] {
+  --bg-primary: #f6f5fb;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1edff;
+  --gradient-purple: #6d28d9;
+  --gradient-cyan: #0a8793; /* 흰 배경에서 읽히도록 민트를 진한 청록으로 */
+  --text-primary: #18181b;
+  --text-secondary: #52525b;
+  --accent-pink: #db2777;
+  --border-color: rgba(109, 40, 217, 0.16);
+  color-scheme: light;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --color-card: var(--bg-card);
+  --color-card-hover: var(--bg-card-hover);
+  --color-purple: var(--gradient-purple);
+  --color-cyan: var(--gradient-cyan);
+  --color-pink: var(--accent-pink);
+  --color-text-secondary: var(--text-secondary);
+  --color-border: var(--border-color);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* 테마별로 다른 이미지를 보여줄 때 사용 (예: ERD 다이어그램 라이트/다크 버전) */
+:root[data-theme="light"] .only-dark,
+:root:not([data-theme="light"]) .only-light {
+  display: none;
+}
+
+/* 코드 블록 색 — 다크/라이트 테마에 따라 바뀜 (sugar-high가 --sh-* 변수를 읽어 토큰마다 색을 칠함) */
+:root {
+  --code-bg: #0d0d14;
+  --code-border: rgba(255, 255, 255, 0.1);
+  --code-fg: #e4e4e7;
+  --code-muted: #a1a1aa;
+  --sh-keyword: #c4a5ff;     /* const, if, return, async ... */
+  --sh-string: #7ee7c7;      /* "문자열" */
+  --sh-class: #82aaff;       /* 클래스·타입 이름 */
+  --sh-identifier: #e4e4e7;  /* 변수·함수 이름 */
+  --sh-property: #7dd3fc;    /* 객체 속성 */
+  --sh-entity: #f9a8d4;      /* 함수 호출 등 */
+  --sh-jsxliterals: #fde68a;
+  --sh-sign: #8b8ba7;        /* 괄호·연산자 */
+  --sh-comment: #6b6b85;     /* 주석 */
+  --diff-add: #6ee7b7;
+  --diff-del: #f9a8d4;
+}
+
+:root[data-theme="light"] {
+  --code-bg: #f7f6fc;
+  --code-border: rgba(109, 40, 217, 0.16);
+  --code-fg: #18181b;
+  --code-muted: #71717a;
+  --sh-keyword: #7c3aed;
+  --sh-string: #047857;
+  --sh-class: #1d4ed8;
+  --sh-identifier: #18181b;
+  --sh-property: #0369a1;
+  --sh-entity: #be185d;
+  --sh-jsxliterals: #a16207;
+  --sh-sign: #71717a;
+  --sh-comment: #a1a1aa;
+  --diff-add: #047857;
+  --diff-del: #be185d;
+}
+
+.code-theme {
+  background: var(--code-bg);
+  color: var(--code-fg);
+  border-color: var(--code-border);
+}
+
+/* 스크롤바 자리를 항상 확보해 두어, 모달이 열리며 스크롤이 잠겨도 화면 폭이 바뀌지 않게 함 */
+html {
+  scrollbar-gutter: stable;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-purple);
+  border-radius: 3px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(123, 47, 247, 0.4);
+  color: #fff;
+}
+
+/* Keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes bounce-arrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes line-expand {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+/* Utility classes */
+.gradient-text {
+  background: linear-gradient(135deg, var(--gradient-purple), var(--gradient-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--gradient-purple), var(--gradient-cyan));
+  z-index: -1;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  padding: 1px;
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(123, 47, 247, 0.3),
+              0 0 40px rgba(123, 47, 247, 0.1);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 245, 212, 0.3),
+              0 0 40px rgba(0, 245, 212, 0.1);
 }
