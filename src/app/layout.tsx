@@ -16,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "김장훈 | Frontend Developer Portfolio",
   description:
-    "데이터가 어떻게 화면이 되는지까지 이해하는 프론트엔드 개발자 김장훈의 포트폴리오",
+    "화면과 데이터를 함께 이해하는 프론트엔드 개발자 김장훈의 포트폴리오",
   keywords: [
     "김장훈",
     "프론트엔드",

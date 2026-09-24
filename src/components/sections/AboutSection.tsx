@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -27,11 +28,23 @@ export default function AboutSection() {
           <div className="relative w-64 h-64 md:w-80 md:h-80">
             {/* Gradient ring */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple to-cyan p-[3px]">
-              <div className="w-full h-full rounded-full bg-card flex items-center justify-center overflow-hidden">
-                {/* Placeholder avatar */}
-                <div className="text-6xl md:text-7xl font-bold gradient-text">
-                  {personalInfo.initials}
-                </div>
+              <div className="relative w-full h-full rounded-full bg-card flex items-center justify-center overflow-hidden">
+                {personalInfo.profileImage ? (
+                  // 원 안에 꽉 차게, 얼굴이 잘리지 않도록 위쪽 기준으로 자름
+                  <Image
+                    src={personalInfo.profileImage}
+                    alt={`${personalInfo.name} 프로필 사진`}
+                    fill
+                    sizes="(min-width: 768px) 320px, 256px"
+                    className="object-cover object-top"
+                    priority
+                  />
+                ) : (
+                  // 사진이 없으면 이니셜 표시
+                  <div className="text-6xl md:text-7xl font-bold gradient-text">
+                    {personalInfo.initials}
+                  </div>
+                )}
               </div>
             </div>
             {/* Glow effect */}

@@ -35,12 +35,14 @@ export const personalInfo = {
   initials: "JH",
   logo: "JH.dev",
   title: "Frontend Developer",
-  subtitle: "데이터가 어떻게 화면이 되는지까지 이해하는 프론트엔드 개발자",
+  subtitle: "화면과 데이터를 함께 이해하는 프론트엔드 개발자",
   location: "Incheon, Korea",
   email: "kjh03291@gmail.com",
   github: "https://github.com/ja-gypsophila",
   // 이력서 PDF를 public/ 폴더에 넣고 경로를 적으면 Resume 버튼이 나타납니다. 예: "/resume.pdf"
   resumeUrl: "",
+  // 프로필 사진: public/ 폴더에 넣고 경로를 적으면 About 섹션의 이니셜 대신 사진이 보입니다. 예: "/profile.jpg"
+  profileImage: "/projects/profile/profile.jpg",
 };
 
 export const navLinks = [
