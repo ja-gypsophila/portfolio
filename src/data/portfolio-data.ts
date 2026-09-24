@@ -194,6 +194,18 @@ export type DesignBlock = {
   notes?: Note[];
 };
 
+// 프로젝트 분류 탭 — 한 프로젝트가 여러 분류에 속할 수 있음 (예: 풀스택)
+export type ProjectCategory = "frontend" | "backend";
+
+export const projectCategories: {
+  key: ProjectCategory | "all";
+  label: string;
+}[] = [
+  { key: "all", label: "All" },
+  { key: "frontend", label: "Frontend" },
+  { key: "backend", label: "Backend" },
+];
+
 export type Project = {
   id: number;
   title: string;
@@ -216,6 +228,9 @@ export type Project = {
   retrospective?: Note[]; // 다시 만든다면 고칠 점
   learnings?: Note[];
   infoRows?: InfoRow[]; // 담당 PR, 주요 커밋 등
+  category: ProjectCategory[]; // 분류 탭
+  language: string; // 주 사용 언어 — 썸네일에 아이콘으로 표시 (TypeScript, JavaScript, C# ...)
+  thumbnail?: string; // 카드 썸네일 이미지 (public/ 기준 경로). 비워 두면 기본 썸네일 표시
   liveUrl: string;
   githubUrl: string;
   featured: boolean;
@@ -225,6 +240,9 @@ export const projectsData: Project[] = [
   {
     id: 1,
     title: "미래엔 달달 독해 콘텐츠",
+    category: ["frontend"],
+    language: "JavaScript",
+    thumbnail: "/projects/profile/dal-doc.png",
     description:
       "[실무 · 2인] 초등 독해 학습 콘텐츠를 레벨·차시별 4단계 구조로 제작. 드래그앤드롭·OX 퀴즈·그림 그리기 인터랙션과 LMS postMessage 연동 구현.",
     overview:
@@ -254,6 +272,9 @@ export const projectsData: Project[] = [
   {
     id: 2,
     title: "Factory Twin",
+    category: ["frontend", "backend"],
+    language: "JavaScript",
+    thumbnail: "",
     description:
       "[개인] 스마트팩토리 설비 4대의 OEE를 실시간으로 보여주는 관제 대시보드. WebSocket 서버가 1초마다 스냅샷을 보내고 React가 KPI 카드와 차트로 시각화.",
     overview:
@@ -320,6 +341,9 @@ export const projectsData: Project[] = [
   {
     id: 3,
     title: "야구볼램",
+    category: ["frontend"],
+    language: "TypeScript",
+    thumbnail: "/projects/profile/yagu-bolram.png",
     description:
       "[팀 · 6인] 실시간 야구경기 정보와 직관기록을 남기는 PWA 플랫폼. Firebase 인증 전체와 axios 인증 인터셉터, 공통 Toast, PWA 구성 담당.",
     overview:
@@ -526,6 +550,9 @@ instance.interceptors.request.use(async (config) => {
   {
     id: 4,
     title: "Vibrato",
+    category: ["backend"],
+    language: "TypeScript",
+    thumbnail: "",
     description:
       "[팀 · 5인] 음악 평가·소통 커뮤니티. 팀 리더로 참여, 종료 2주 전 백엔드를 이어받아 7개 테이블 ERD 설계와 AWS 배포까지 완료.",
     overview:
@@ -808,6 +835,9 @@ instance.interceptors.request.use(async (config) => {
   {
     id: 5,
     title: "Mini MES",
+    category: ["backend"],
+    language: "C#",
+    thumbnail: "",
     description:
       "[개인] Python 수집기 → MS-SQL → C# WinForms로 이어지는 3계층 미니 MES. 5초 자동 새로고침과 목표 미달 OEE 셀 강조 표시.",
     overview:

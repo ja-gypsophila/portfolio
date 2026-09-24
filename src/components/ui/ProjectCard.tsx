@@ -3,6 +3,8 @@
 import { motion } from "motion/react";
 import { staggerItem } from "@/lib/animation-variants";
 import { FaArrowRight, FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import ProjectThumbnail from "@/components/ui/ProjectThumbnail";
+import type { ProjectCategory } from "@/data/portfolio-data";
 
 interface ProjectCardProps {
   title: string;
@@ -11,6 +13,9 @@ interface ProjectCardProps {
   liveUrl: string;
   githubUrl: string;
   featured: boolean;
+  category: ProjectCategory[];
+  language: string;
+  thumbnail?: string;
   onClick: () => void;
 }
 
@@ -21,6 +26,9 @@ export default function ProjectCard({
   liveUrl,
   githubUrl,
   featured,
+  category,
+  language,
+  thumbnail,
   onClick,
 }: ProjectCardProps) {
   return (
@@ -38,14 +46,16 @@ export default function ProjectCard({
       }}
       variants={staggerItem}
       whileHover={{ y: -6 }}
-      className={`group cursor-pointer relative bg-card rounded-xl overflow-hidden border border-border hover:border-purple/40 transition-all duration-300 ${
+      className={`group cursor-pointer relative flex flex-col bg-card rounded-xl overflow-hidden border border-border hover:border-purple/40 transition-all duration-300 ${
         featured ? "md:col-span-1" : ""
       }`}
     >
       {/* Gradient top accent */}
       <div className="h-1 bg-gradient-to-r from-purple to-cyan" />
 
-      <div className="p-6">
+      <ProjectThumbnail title={title} language={language} category={category} thumbnail={thumbnail} />
+
+      <div className="p-6 flex flex-col flex-1">
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <h3 className="text-xl font-bold text-foreground group-hover:text-purple transition-colors">
@@ -96,7 +106,7 @@ export default function ProjectCard({
           ))}
         </div>
 
-        <span className="inline-flex items-center gap-1.5 text-sm text-purple group-hover:text-cyan transition-colors">
+        <span className="mt-auto inline-flex items-center gap-1.5 text-sm text-purple group-hover:text-cyan transition-colors">
           자세히 보기 <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
         </span>
       </div>

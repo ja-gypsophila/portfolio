@@ -2,20 +2,20 @@
 
 프론트엔드 개발자 김장훈의 포트폴리오 사이트입니다.
 
-- 배포 주소: (배포 후 추가)
+- 배포 주소: https://portfolio-phi-three-too93altcx.vercel.app/
 - GitHub: https://github.com/ja-gypsophila
 
 ## 기술 스택
 
-| 구분 | 사용 기술 |
-|---|---|
-| 프레임워크 | Next.js 16 (App Router), React 19, TypeScript |
-| 스타일 | Tailwind CSS 4, CSS 변수 기반 다크/라이트 테마 |
-| 애니메이션 | motion |
-| 테마 전환 | next-themes |
-| 코드 구문 강조 | sugar-high |
-| 아이콘 | react-icons |
-| 배포 | Vercel |
+| 구분           | 사용 기술                                      |
+| -------------- | ---------------------------------------------- |
+| 프레임워크     | Next.js 16 (App Router), React 19, TypeScript  |
+| 스타일         | Tailwind CSS 4, CSS 변수 기반 다크/라이트 테마 |
+| 애니메이션     | motion                                         |
+| 테마 전환      | next-themes                                    |
+| 코드 구문 강조 | sugar-high                                     |
+| 아이콘         | react-icons                                    |
+| 배포           | Vercel                                         |
 
 ## 주요 기능
 
@@ -48,9 +48,3 @@ npm install
 npm run dev     # http://localhost:3000
 npm run build   # 배포용 빌드
 ```
-
-## 내용 수정
-
-- 문구·경력·프로젝트: `src/data/portfolio-data.ts`
-- 이력서 PDF를 `public/`에 넣고 `personalInfo.resumeUrl`에 경로를 적으면 Resume 버튼이 나타납니다.
-- 테마 색: `src/app/globals.css`의 `:root`(다크)와 `:root[data-theme="light"]`(라이트)
