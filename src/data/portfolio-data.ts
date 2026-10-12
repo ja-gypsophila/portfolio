@@ -34,8 +34,8 @@ export const personalInfo = {
   nameEn: "Kim Janghun",
   initials: "Vancouver",
   logo: "Vancouver.dev",
-  title: "Fullstack Developer",
-  subtitle: "화면과 데이터를 함께 이해하는 풀스택 개발자",
+  title: "화면과 데이터를 함께 이해하는 개발자",
+  subtitle: "",
   location: "Incheon, Korea",
   email: "kjh03291@gmail.com",
   github: "https://github.com/ja-gypsophila",
@@ -264,8 +264,7 @@ export const projectsData: Project[] = [
       "HLS.js",
     ],
     liveUrl: "",
-    githubUrl:
-      "https://github.com/ja-gypsophila/PF_miraen_dal_doc/commits/master/",
+    githubUrl: "",
     featured: true,
   },
 
@@ -273,8 +272,8 @@ export const projectsData: Project[] = [
     id: 2,
     title: "Factory Twin",
     category: ["frontend", "backend"],
-    language: "JavaScript",
     thumbnail: "",
+    language: "JavaScript",
     description:
       "[개인] 스마트팩토리 설비 4대의 OEE를 실시간으로 보여주는 관제 대시보드. WebSocket 서버가 1초마다 스냅샷을 보내고 React가 KPI 카드와 차트로 시각화.",
     overview:
@@ -556,7 +555,7 @@ instance.interceptors.request.use(async (config) => {
     description:
       "[팀 · 5인] 음악 평가·소통 커뮤니티. 팀 리더로 참여, 종료 2주 전 백엔드를 이어받아 7개 테이블 ERD 설계와 AWS 배포까지 완료.",
     overview:
-      "음악을 평가하고 유저들과 소통하는 커뮤니티입니다. 팀 리더로 참여했고, 종료 2주 전 백엔드 인원이 이탈한 뒤 4일 동안 RDBMS를 익혀 백엔드 개발 전반을 직접 담당했습니다.",
+      "음악을 평가하고 유저들과 소통하는 커뮤니티입니다. 팀 리더로 참여했고, 백엔드 개발 전반을 직접 담당했습니다.",
     notice: "서비스(vibrato1.shop)는 현재 운영이 종료되었습니다.",
     details: [
       "Firebase 인증 기반 회원가입 · 로그인",
@@ -853,7 +852,7 @@ instance.interceptors.request.use(async (config) => {
     team: "1명",
     technologies: ["C#", ".NET 8 WinForms", "MS-SQL", "Python"],
     liveUrl: "",
-    githubUrl: "",
+    githubUrl: "https://github.com/ja-gypsophila/C-_mini_mes",
     featured: false,
   },
 ];
